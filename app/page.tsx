@@ -15,7 +15,7 @@ export default async function Home() {
     .select()
     .is('boost', true);
 
-  if (!products) {
+  if (!topProducts) {
     return notFound();
   }
 
@@ -28,8 +28,8 @@ export default async function Home() {
             <p className="text-xl">You can pay to boost your products here.</p>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-2 xl:gap-12">
-            {products &&
-              products.map((item, idx) => (
+            {topProducts &&
+              topProducts.map((item, idx) => (
                 <Card id={item.id} key={`${item.name}-${idx}`} {...item} imageUrl={`${process.env.SUPABASE_URL}/storage/v1/object/public/storage/${item.imageUrl}`}/>
               ))}
           </div>
